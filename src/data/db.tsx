@@ -1,5 +1,8 @@
+// Json sacado de internet para este eproyecto
+
 import type { MenuItem } from '../types';
 
+// se le establece que todos sus datos deben seguir la estructura de MenuItem
 export const menuItems : MenuItem[] = [
     {
       "id": 1,
