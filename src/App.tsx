@@ -3,9 +3,10 @@ import { menuItems } from "./data/db";
 import useOrder from "./hooks/useOrder";
 import OrderContents from "./components/OrderContents";
 import OrderTotals from "./components/OrderTotals";
+import TipPercentageForm from "./components/TipPercentageForm";
 
 function App() {
-  const { addItem, order, removeItem } = useOrder();
+  const { addItem, order, removeItem, tip, setTip, placeOrder } = useOrder();
 
   return (
     <>
@@ -21,23 +22,23 @@ function App() {
 
           <div className="space-y-3 mt-10">
             {menuItems.map((item) => (
-              <Menuitems 
-              key={item.id} 
-              item={item}
-              addItem={addItem}
-              />
+              <Menuitems key={item.id} item={item} addItem={addItem} />
             ))}
           </div>
         </div>
 
         <div className="border border-dashed border-slate-500 p-5 rounded-lg space-y-10">
-          <OrderContents
-            order={order}
-            removeItem ={removeItem}
-          />
-          <OrderTotals
-            order={order}
-          />
+          {order.length > 0 ? ( //si hay registros en el useState de order
+            <>
+              <OrderContents order={order} removeItem={removeItem} />
+
+              <TipPercentageForm setTip={setTip} tip={tip} />
+
+              <OrderTotals order={order} tip={tip} placeOrder={placeOrder} />
+            </>
+          ) : (
+            <p className="text-center">La Orden esta vacia</p>
+          )}
         </div>
       </main>
     </>

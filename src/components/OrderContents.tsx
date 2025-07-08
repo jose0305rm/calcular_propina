@@ -15,10 +15,7 @@ export default function OrderContents({ order, removeItem }: OrderContentsProps)
       </h2>
 
       <div className="space-y-3 mt-10">
-        {order.length === 0 ? (
-          // si la lista order no tiene elementos
-          <p className="text-center">La Orden esta vacia</p>
-        ) : (
+        {
           // si la lista order tiene elementos
           order.map((item) => (
             <div key={item.id} className="flex justify-between items-center border-t border-gray-200 py-5 last-of-type:border-b">
@@ -38,8 +35,7 @@ export default function OrderContents({ order, removeItem }: OrderContentsProps)
                 X
               </button>
             </div>
-          ))
-        )}
+          ))}
       </div>
     </div>
   );
