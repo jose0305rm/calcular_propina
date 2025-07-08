@@ -6,6 +6,8 @@ export default function useOrder() {
   //una lista que solo permite agregar objetos de tipo OrderItem ()
   //se le llama generics, y le da prioridad al tipo de dato dentro de <>
 
+  const [tip, setTip] = useState(0);
+
   const addItem = (item: MenuItem) => {
     //debemos especificar que tipo de dato le estamos pasando
     // console.log(item) //ejemplo para ver si funciona nuestra funcion
@@ -33,10 +35,20 @@ export default function useOrder() {
     // si el id del elemento a evaluar es igual al id que le estamos pasando, lo borramos
   }
 
+  const placeOrder = () => {
+    setOrder([]);
+    setTip(0);
+    console.log('Guardando...'); //no guarda, solo hace la simulkacion
+    //se puede guardar en base de datos o en local storage
+  }
+
 
   return {
     addItem, //retornamos la fucnion para utilizarla en otros archivos
+    tip, 
+    setTip,
     order, //importamo el listado de ordenes con su cantidad
-    removeItem //importamos funcion que elimina el item de la lista
+    removeItem, //importamos funcion que elimina el item de la lista
+    placeOrder
   };
 }
